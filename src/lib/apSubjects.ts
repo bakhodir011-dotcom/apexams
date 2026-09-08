@@ -533,6 +533,102 @@ export function getExamComponents(slug: string): ExamComponent[] {
   return EXAM_COMPONENTS[slug] ?? [];
 }
 
+// ---- Recommended AP subjects by intended university major ----
+export type MajorId =
+  | "engineering"
+  | "computer-science"
+  | "business-economics"
+  | "medicine-life-sciences"
+  | "natural-sciences"
+  | "mathematics"
+  | "humanities-law"
+  | "social-sciences"
+  | "arts"
+  | "environmental";
+
+export const MAJORS: { id: MajorId; subjectSlugs: string[] }[] = [
+  {
+    id: "engineering",
+    subjectSlugs: [
+      "calculus-ab", "calculus-bc", "physics-1", "physics-2",
+      "physics-c-mechanics", "physics-c-electricity-and-magnetism",
+      "chemistry", "computer-science-a", "statistics",
+    ],
+  },
+  {
+    id: "computer-science",
+    subjectSlugs: [
+      "computer-science-a", "computer-science-principles", "cybersecurity",
+      "calculus-ab", "calculus-bc", "statistics", "physics-1",
+    ],
+  },
+  {
+    id: "business-economics",
+    subjectSlugs: [
+      "microeconomics", "macroeconomics", "statistics", "calculus-ab",
+      "business-personal-finance", "computer-science-principles",
+    ],
+  },
+  {
+    id: "medicine-life-sciences",
+    subjectSlugs: [
+      "biology", "chemistry", "physics-1", "psychology",
+      "statistics", "environmental-science",
+    ],
+  },
+  {
+    id: "natural-sciences",
+    subjectSlugs: [
+      "physics-1", "physics-2", "physics-c-mechanics",
+      "physics-c-electricity-and-magnetism", "chemistry", "biology",
+      "calculus-bc", "environmental-science",
+    ],
+  },
+  {
+    id: "mathematics",
+    subjectSlugs: [
+      "calculus-ab", "calculus-bc", "precalculus", "statistics",
+      "computer-science-a",
+    ],
+  },
+  {
+    id: "humanities-law",
+    subjectSlugs: [
+      "english-language-and-composition", "english-literature-and-composition",
+      "united-states-history", "world-history-modern",
+      "united-states-government-and-politics",
+      "comparative-government-and-politics", "psychology", "human-geography",
+    ],
+  },
+  {
+    id: "social-sciences",
+    subjectSlugs: [
+      "psychology", "human-geography", "microeconomics", "macroeconomics",
+      "united-states-government-and-politics",
+      "comparative-government-and-politics", "statistics",
+    ],
+  },
+  {
+    id: "arts",
+    subjectSlugs: ["art-history", "music-theory", "english-literature-and-composition"],
+  },
+  {
+    id: "environmental",
+    subjectSlugs: [
+      "environmental-science", "biology", "chemistry", "human-geography",
+      "statistics",
+    ],
+  },
+];
+
+export function getMajorSubjects(id: MajorId): ApSubject[] {
+  const major = MAJORS.find((m) => m.id === id);
+  if (!major) return [];
+  return major.subjectSlugs
+    .map((slug) => getSubject(slug))
+    .filter((s): s is ApSubject => Boolean(s));
+}
+
 export function getSubject(slug: string): ApSubject | undefined {
   return AP_SUBJECTS.find((s) => s.slug === slug);
 }

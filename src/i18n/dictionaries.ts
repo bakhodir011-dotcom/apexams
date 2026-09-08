@@ -1,5 +1,5 @@
 import type { Locale } from "@/i18n/config";
-import type { ApCategory, ApFormat, ExamComponentType } from "@/lib/apSubjects";
+import type { ApCategory, ApFormat, ExamComponentType, MajorId } from "@/lib/apSubjects";
 
 export type NavStrings = {
   subjects: string;
@@ -38,6 +38,14 @@ export type Dictionary = {
     registerBtn: string;
     detailsBtn: string;
   };
+  majors: {
+    heading: string;
+    subheading: string;
+    prompt: string;
+    hint: string;
+    resultLabel: string;
+    labels: Record<MajorId, string>;
+  };
   why: {
     heading: string;
     subheading: string;
@@ -57,6 +65,11 @@ export type Dictionary = {
     colAfternoon: string;
     weekdays: Record<"mon" | "tue" | "wed" | "thu" | "fri", string>;
     note: string;
+    deadlinesHeading: string;
+    standardLabel: string;
+    standardDate: string;
+    lateLabel: string;
+    lateDate: string;
   };
   faq: {
     heading: string;
@@ -174,6 +187,25 @@ const en: Dictionary = {
     registerBtn: "Register",
     detailsBtn: "Details",
   },
+  majors: {
+    heading: "Choose the subjects according to your major",
+    subheading: "Not sure which AP exams to take? Pick your intended university major and we'll suggest the AP subjects that fit.",
+    prompt: "Select your major",
+    hint: "Select a major above to see the recommended AP subjects.",
+    resultLabel: "Recommended AP subjects",
+    labels: {
+      engineering: "Engineering",
+      "computer-science": "Computer Science & IT",
+      "business-economics": "Business, Economics & Finance",
+      "medicine-life-sciences": "Medicine & Life Sciences",
+      "natural-sciences": "Natural Sciences & Physics",
+      mathematics: "Mathematics & Data Science",
+      "humanities-law": "Humanities & Law",
+      "social-sciences": "Social Sciences",
+      arts: "Arts & Design",
+      environmental: "Environmental Studies",
+    },
+  },
   why: {
     heading: "Why sit your AP exams here",
     subheading: "A trusted local centre with the support you need to do your best.",
@@ -206,6 +238,11 @@ const en: Dictionary = {
     colAfternoon: "Afternoon (12 p.m.)",
     weekdays: { mon: "Mon", tue: "Tue", wed: "Wed", thu: "Thu", fri: "Fri" },
     note: "Only the subjects offered at Innovative Centre are shown. Dates and times follow the official College Board schedule and may be updated.",
+    deadlinesHeading: "Registration deadlines",
+    standardLabel: "Standard registration",
+    standardDate: "November 13, 2026",
+    lateLabel: "Late registration",
+    lateDate: "March 12, 2027",
   },
   faq: {
     heading: "Frequently asked questions",
@@ -329,6 +366,25 @@ const ru: Dictionary = {
     registerBtn: "Регистрация",
     detailsBtn: "Подробнее",
   },
+  majors: {
+    heading: "Выберите предметы по вашей специальности",
+    subheading: "Не знаете, какие экзамены AP сдавать? Выберите будущую университетскую специальность — мы подскажем подходящие предметы AP.",
+    prompt: "Выберите специальность",
+    hint: "Выберите специальность выше, чтобы увидеть рекомендуемые предметы AP.",
+    resultLabel: "Рекомендуемые предметы AP",
+    labels: {
+      engineering: "Инженерия",
+      "computer-science": "Информатика и IT",
+      "business-economics": "Бизнес, экономика и финансы",
+      "medicine-life-sciences": "Медицина и науки о жизни",
+      "natural-sciences": "Естественные науки и физика",
+      mathematics: "Математика и Data Science",
+      "humanities-law": "Гуманитарные науки и право",
+      "social-sciences": "Общественные науки",
+      arts: "Искусство и дизайн",
+      environmental: "Экология и окружающая среда",
+    },
+  },
   why: {
     heading: "Почему стоит сдавать AP здесь",
     subheading: "Надёжный местный центр и поддержка, чтобы показать лучший результат.",
@@ -361,6 +417,11 @@ const ru: Dictionary = {
     colAfternoon: "День (12:00)",
     weekdays: { mon: "Пн", tue: "Вт", wed: "Ср", thu: "Чт", fri: "Пт" },
     note: "Показаны только предметы, доступные в Innovative Centre. Даты и время соответствуют официальному расписанию College Board и могут обновляться.",
+    deadlinesHeading: "Сроки регистрации",
+    standardLabel: "Стандартная регистрация",
+    standardDate: "13 ноября 2026",
+    lateLabel: "Поздняя регистрация",
+    lateDate: "12 марта 2027",
   },
   faq: {
     heading: "Частые вопросы",
@@ -484,6 +545,25 @@ const uz: Dictionary = {
     registerBtn: "Ro‘yxatdan o‘tish",
     detailsBtn: "Batafsil",
   },
+  majors: {
+    heading: "Mutaxassisligingizga mos fanlarni tanlang",
+    subheading: "Qaysi AP imtihonlarini topshirishni bilmayapsizmi? Bo‘lajak universitet mutaxassisligingizni tanlang — sizga mos AP fanlarini tavsiya qilamiz.",
+    prompt: "Mutaxassislikni tanlang",
+    hint: "Tavsiya etilgan AP fanlarini ko‘rish uchun yuqoridan mutaxassislik tanlang.",
+    resultLabel: "Tavsiya etilgan AP fanlari",
+    labels: {
+      engineering: "Muhandislik",
+      "computer-science": "Informatika va IT",
+      "business-economics": "Biznes, iqtisodiyot va moliya",
+      "medicine-life-sciences": "Tibbiyot va hayot fanlari",
+      "natural-sciences": "Tabiiy fanlar va fizika",
+      mathematics: "Matematika va Data Science",
+      "humanities-law": "Gumanitar fanlar va huquq",
+      "social-sciences": "Ijtimoiy fanlar",
+      arts: "San’at va dizayn",
+      environmental: "Ekologiya va atrof-muhit",
+    },
+  },
   why: {
     heading: "Nega AP imtihonlarini shu yerda topshirish kerak",
     subheading: "Ishonchli mahalliy markaz va eng yaxshi natija uchun qo‘llab-quvvatlash.",
@@ -516,6 +596,11 @@ const uz: Dictionary = {
     colAfternoon: "Tushdan keyin (12:00)",
     weekdays: { mon: "Dush", tue: "Sesh", wed: "Chor", thu: "Pay", fri: "Jum" },
     note: "Faqat Innovative Centre’da taklif etiladigan fanlar ko‘rsatilgan. Sanalar va vaqtlar College Board’ning rasmiy jadvaliga muvofiq va yangilanishi mumkin.",
+    deadlinesHeading: "Ro‘yxatdan o‘tish muddatlari",
+    standardLabel: "Standart ro‘yxatdan o‘tish",
+    standardDate: "2026-yil 13-noyabr",
+    lateLabel: "Kechiktirilgan ro‘yxatdan o‘tish",
+    lateDate: "2027-yil 12-mart",
   },
   faq: {
     heading: "Ko‘p beriladigan savollar",

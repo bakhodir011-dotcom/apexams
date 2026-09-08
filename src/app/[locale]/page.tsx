@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { AP_SUBJECTS, CATEGORY_ORDER, subjectsByCategory } from "@/lib/apSubjects";
+import { AP_SUBJECTS, CATEGORY_ORDER, subjectsByCategory, MAJORS, getMajorSubjects } from "@/lib/apSubjects";
 import { EXAM_DATES } from "@/lib/examDates";
 import { TELEGRAM_URL, CONTACT, CENTRE } from "@/lib/config";
 import Header from "@/components/Header";
@@ -10,6 +10,7 @@ import Faq from "@/components/Faq";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import SubjectCard from "@/components/SubjectCard";
+import MajorSelector from "@/components/MajorSelector";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -43,6 +44,12 @@ export default async function LandingPage({
   if (!locales.includes(raw as Locale)) notFound();
   const locale = raw as Locale;
   const t = getDictionary(locale);
+
+  const resolvedMajors = MAJORS.map((m) => ({
+    id: m.id,
+    name: t.majors.labels[m.id],
+    subjects: getMajorSubjects(m.id),
+  }));
 
   return (
     <>
@@ -125,6 +132,19 @@ export default async function LandingPage({
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{pt.body}</p>
                 </Reveal>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== Choose by major ===================== */}
+        <section id="majors" className="border-y border-slate-100 bg-white py-20 sm:py-24">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <Reveal className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{t.majors.heading}</h2>
+              <p className="mt-3 text-slate-600">{t.majors.subheading}</p>
+            </Reveal>
+            <div className="mt-12">
+              <MajorSelector majors={resolvedMajors} t={t} locale={locale} />
             </div>
           </div>
         </section>
@@ -221,6 +241,32 @@ export default async function LandingPage({
               <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-700">
                 {t.dates.window}
               </p>
+            </Reveal>
+
+            {/* Registration deadlines */}
+            <Reveal className="mt-10">
+              <h3 className="text-center text-sm font-bold uppercase tracking-wide text-slate-500">{t.dates.deadlinesHeading}</h3>
+              <div className="mx-auto mt-4 grid max-w-2xl gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-brand-200 bg-brand-50 p-5">
+                  <div className="flex items-center gap-2 text-brand-700">
+                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z" />
+                    </svg>
+                    <span className="text-xs font-bold uppercase tracking-wide">{t.dates.standardLabel}</span>
+                  </div>
+                  <p className="mt-2 text-lg font-extrabold text-slate-900">{t.dates.standardDate}</p>
+                </div>
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+                  <div className="flex items-center gap-2 text-amber-700">
+                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="9" />
+                      <path strokeLinecap="round" d="M12 8v4l2.5 2.5" />
+                    </svg>
+                    <span className="text-xs font-bold uppercase tracking-wide">{t.dates.lateLabel}</span>
+                  </div>
+                  <p className="mt-2 text-lg font-extrabold text-slate-900">{t.dates.lateDate}</p>
+                </div>
+              </div>
             </Reveal>
 
             <Reveal className="mt-10 overflow-hidden rounded-2xl border border-slate-200">
