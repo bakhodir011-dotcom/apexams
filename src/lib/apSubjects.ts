@@ -621,6 +621,23 @@ export const MAJORS: { id: MajorId; subjectSlugs: string[] }[] = [
   },
 ];
 
+// ---- Digital exam delivery mode (College Board Bluebook, 2026/2027) ----
+// Fully digital: MC + FR both in the Bluebook app.
+// Hybrid: MC in the app, free-response handwritten on paper.
+export type DeliveryMode = "fully-digital" | "hybrid";
+
+const HYBRID_SLUGS = new Set<string>([
+  "biology", "calculus-ab", "calculus-bc", "chemistry",
+  "macroeconomics", "microeconomics", "music-theory",
+  "physics-1", "physics-2", "physics-c-electricity-and-magnetism",
+  "physics-c-mechanics", "precalculus",
+]);
+
+// Everything else offered is fully digital (incl. the two pilots).
+export function getDeliveryMode(slug: string): DeliveryMode {
+  return HYBRID_SLUGS.has(slug) ? "hybrid" : "fully-digital";
+}
+
 export function getMajorsForSubject(slug: string): MajorId[] {
   return MAJORS.filter((m) => m.subjectSlugs.includes(slug)).map((m) => m.id);
 }

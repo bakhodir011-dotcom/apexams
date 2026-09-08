@@ -1,5 +1,5 @@
 import type { Locale } from "@/i18n/config";
-import type { ApCategory, ApFormat, ExamComponentType, MajorId } from "@/lib/apSubjects";
+import type { ApCategory, ApFormat, ExamComponentType, MajorId, DeliveryMode } from "@/lib/apSubjects";
 
 export type NavStrings = {
   subjects: string;
@@ -100,7 +100,8 @@ export type Dictionary = {
     keyFacts: string;
     formatLabel: string;
     deliveryLabel: string;
-    deliveryValue: string;
+    deliveryLabels: Record<DeliveryMode, string>;
+    deliveryDescs: Record<DeliveryMode, string>;
     durationLabel: string;
     categoryLabel: string;
     examDateLabel: string;
@@ -288,7 +289,14 @@ const en: Dictionary = {
     keyFacts: "Key facts",
     formatLabel: "Exam format",
     deliveryLabel: "Exam delivery",
-    deliveryValue: "Digital · Hybrid",
+    deliveryLabels: {
+      "fully-digital": "Fully digital",
+      hybrid: "Hybrid digital",
+    },
+    deliveryDescs: {
+      "fully-digital": "Multiple-choice and free-response are both completed in the College Board Bluebook app.",
+      hybrid: "Multiple-choice is answered in the Bluebook app; free-response is handwritten on paper.",
+    },
     durationLabel: "Exam duration",
     categoryLabel: "Subject area",
     examDateLabel: "2027 exam date",
@@ -475,7 +483,14 @@ const ru: Dictionary = {
     keyFacts: "Кратко",
     formatLabel: "Формат экзамена",
     deliveryLabel: "Формат проведения",
-    deliveryValue: "Digital · Hybrid",
+    deliveryLabels: {
+      "fully-digital": "Полностью цифровой",
+      hybrid: "Гибридный",
+    },
+    deliveryDescs: {
+      "fully-digital": "И тесты, и развёрнутые ответы выполняются в приложении College Board Bluebook.",
+      hybrid: "Тесты выполняются в приложении Bluebook, а развёрнутые ответы пишутся от руки на бумаге.",
+    },
     durationLabel: "Длительность",
     categoryLabel: "Направление",
     examDateLabel: "Дата экзамена 2027",
@@ -662,7 +677,14 @@ const uz: Dictionary = {
     keyFacts: "Asosiy ma’lumot",
     formatLabel: "Imtihon formati",
     deliveryLabel: "O‘tkazish formati",
-    deliveryValue: "Digital · Hybrid",
+    deliveryLabels: {
+      "fully-digital": "To‘liq raqamli",
+      hybrid: "Gibrid",
+    },
+    deliveryDescs: {
+      "fully-digital": "Test va yozma javoblarning ikkalasi ham College Board Bluebook ilovasida bajariladi.",
+      hybrid: "Test Bluebook ilovasida bajariladi, yozma javoblar esa qog‘ozda qo‘lda yoziladi.",
+    },
     durationLabel: "Davomiyligi",
     categoryLabel: "Yo‘nalish",
     examDateLabel: "2027 imtihon sanasi",

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { AP_SUBJECTS, getSubject, subjectsByCategory, getExamComponents, getMajorsForSubject } from "@/lib/apSubjects";
+import { AP_SUBJECTS, getSubject, subjectsByCategory, getExamComponents, getMajorsForSubject, getDeliveryMode } from "@/lib/apSubjects";
 import { EXAM_DATES } from "@/lib/examDates";
 import { TELEGRAM_URL, CENTRE } from "@/lib/config";
 import Header from "@/components/Header";
@@ -58,10 +58,11 @@ export default async function SubjectPage({
   const related = subjectsByCategory(subject.category).filter((s) => s.slug !== subject.slug);
   const scoreFmt = (n: number) => (Number.isInteger(n) ? `${n}` : n.toFixed(1));
 
-  const facts: { label: string; value: string }[] = [
+  const delivery = getDeliveryMode(subject.slug);
+  const facts: { label: string; value: string; hint?: string }[] = [
     { label: sp.categoryLabel, value: t.subjects.categories[subject.category] },
     { label: sp.formatLabel, value: t.subjects.formatLabels[subject.format] },
-    { label: sp.deliveryLabel, value: sp.deliveryValue },
+    { label: sp.deliveryLabel, value: sp.deliveryLabels[delivery], hint: sp.deliveryDescs[delivery] },
     { label: sp.durationLabel, value: subject.duration === "TBA" ? t.subjects.tba : subject.duration },
     {
       label: sp.examDateLabel,
@@ -175,6 +176,7 @@ export default async function SubjectPage({
                   <div key={f.label} className="flex flex-col gap-0.5">
                     <dt className="text-xs font-medium text-slate-400">{f.label}</dt>
                     <dd className="font-semibold text-slate-800">{f.value}</dd>
+                    {f.hint && <dd className="text-xs leading-relaxed text-slate-500">{f.hint}</dd>}
                   </div>
                 ))}
               </dl>
