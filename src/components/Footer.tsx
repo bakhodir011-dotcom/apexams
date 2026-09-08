@@ -1,7 +1,6 @@
 import { locales, localeNames, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { TELEGRAM_URL, CONTACT, CENTRE } from "@/lib/config";
-import { CheckMark } from "@/components/Logo";
 
 export default function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
   const links = [
@@ -17,13 +16,8 @@ export default function Footer({ locale, t }: { locale: Locale; t: Dictionary })
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <CheckMark className="h-9 w-9 flex-shrink-0 text-white" />
-              <span className="leading-tight">
-                <span className="font-brand block text-[17px] font-bold tracking-tight text-white">Innovative Centre</span>
-                <span className="block text-[10.5px] font-semibold tracking-wide text-brand-300">AP CENTRE 788001 · SAMARKAND</span>
-              </span>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logos/innovative-centre-white.png" alt="Innovative Centre" className="h-12 w-auto" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">{t.footer.tagline}</p>
             <a
               href={TELEGRAM_URL}

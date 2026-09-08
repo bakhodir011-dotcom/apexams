@@ -4,7 +4,6 @@ import { useState } from "react";
 import { localeNames, localeFlags, locales, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { TELEGRAM_URL } from "@/lib/config";
-import { CheckMark } from "@/components/Logo";
 
 export default function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,12 +20,9 @@ export default function Header({ locale, t }: { locale: Locale; t: Dictionary })
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href={`/${locale}`} className="flex items-center gap-2.5">
-          <CheckMark className="h-9 w-9 flex-shrink-0 text-ic-800" />
-          <span className="leading-tight">
-            <span className="font-brand block text-[17px] font-bold tracking-tight text-ic-800">Innovative Centre</span>
-            <span className="block text-[10.5px] font-semibold tracking-wide text-ic-500">AP CENTRE 788001 · SAMARKAND</span>
-          </span>
+        <a href={`/${locale}`} className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logos/innovative-centre.png" alt="Innovative Centre" className="h-9 w-auto sm:h-10" />
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex">
