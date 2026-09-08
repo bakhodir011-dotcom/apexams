@@ -99,6 +99,8 @@ export type Dictionary = {
     overview: string;
     keyFacts: string;
     formatLabel: string;
+    deliveryLabel: string;
+    deliveryValue: string;
     durationLabel: string;
     categoryLabel: string;
     examDateLabel: string;
@@ -285,6 +287,8 @@ const en: Dictionary = {
     overview: "Overview",
     keyFacts: "Key facts",
     formatLabel: "Exam format",
+    deliveryLabel: "Exam delivery",
+    deliveryValue: "Digital · Hybrid",
     durationLabel: "Exam duration",
     categoryLabel: "Subject area",
     examDateLabel: "2027 exam date",
@@ -470,6 +474,8 @@ const ru: Dictionary = {
     overview: "Обзор",
     keyFacts: "Кратко",
     formatLabel: "Формат экзамена",
+    deliveryLabel: "Формат проведения",
+    deliveryValue: "Digital · Hybrid",
     durationLabel: "Длительность",
     categoryLabel: "Направление",
     examDateLabel: "Дата экзамена 2027",
@@ -655,6 +661,8 @@ const uz: Dictionary = {
     overview: "Umumiy ma’lumot",
     keyFacts: "Asosiy ma’lumot",
     formatLabel: "Imtihon formati",
+    deliveryLabel: "O‘tkazish formati",
+    deliveryValue: "Digital · Hybrid",
     durationLabel: "Davomiyligi",
     categoryLabel: "Yo‘nalish",
     examDateLabel: "2027 imtihon sanasi",

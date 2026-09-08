@@ -61,6 +61,7 @@ export default async function SubjectPage({
   const facts: { label: string; value: string }[] = [
     { label: sp.categoryLabel, value: t.subjects.categories[subject.category] },
     { label: sp.formatLabel, value: t.subjects.formatLabels[subject.format] },
+    { label: sp.deliveryLabel, value: sp.deliveryValue },
     { label: sp.durationLabel, value: subject.duration === "TBA" ? t.subjects.tba : subject.duration },
     {
       label: sp.examDateLabel,
