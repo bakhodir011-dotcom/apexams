@@ -1,6 +1,6 @@
 import { locales, localeNames, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { TELEGRAM_URL, CONTACT } from "@/lib/config";
+import { TELEGRAM_URL, CONTACT, CENTRE } from "@/lib/config";
 import { CheckMark } from "@/components/Logo";
 
 export default function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
@@ -14,14 +14,14 @@ export default function Footer({ locale, t }: { locale: Locale; t: Dictionary })
   return (
     <footer id="contact" className="bg-brand-950 text-slate-300">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5">
               <CheckMark className="h-8 w-8 flex-shrink-0 text-white" />
               <span className="leading-tight">
                 <span className="block text-[15px] font-extrabold tracking-tight text-white">Innovative Centre</span>
-                <span className="block text-[10.5px] font-semibold tracking-wide text-brand-300">AP EXAM CENTRE · UZBEKISTAN</span>
+                <span className="block text-[10.5px] font-semibold tracking-wide text-brand-300">AP CENTRE 788001 · SAMARKAND</span>
               </span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">{t.footer.tagline}</p>
@@ -78,6 +78,26 @@ export default function Footer({ locale, t }: { locale: Locale; t: Dictionary })
                 </div>
               </li>
             </ul>
+          </div>
+
+          {/* Venue */}
+          <div>
+            <h3 className="text-sm font-bold uppercase tracking-wide text-white">{t.footer.venueHeading}</h3>
+            <address className="mt-4 space-y-2.5 text-sm not-italic">
+              <p className="text-slate-400">{t.venue.address}</p>
+              <a
+                href={CENTRE.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-slate-400 transition hover:text-white"
+              >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z" />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                {t.venue.directions}
+              </a>
+            </address>
           </div>
         </div>
 

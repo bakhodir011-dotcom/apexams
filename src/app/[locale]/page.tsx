@@ -3,7 +3,7 @@ import { locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { AP_SUBJECTS, CATEGORY_ORDER, subjectsByCategory } from "@/lib/apSubjects";
 import { EXAM_DATES } from "@/lib/examDates";
-import { TELEGRAM_URL, CONTACT } from "@/lib/config";
+import { TELEGRAM_URL, CONTACT, CENTRE } from "@/lib/config";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Faq from "@/components/Faq";
@@ -16,6 +16,10 @@ export function generateStaticParams() {
 }
 
 const whyIcons = [
+  // AP Classroom (screen with play)
+  "M4 4h16a1 1 0 011 1v11a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1zm6 3.5v6l5-3-5-3zM8 20h8v2H8v-2z",
+  // registration support (chat bubble)
+  "M4 4h16a1 1 0 011 1v10a1 1 0 01-1 1H9l-5 4V5a1 1 0 011-1zm3 5v2h10V9H7zm0 3v2h7v-2H7z",
   // local test centre
   "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z",
   // subjects / books
@@ -248,6 +252,60 @@ export default async function LandingPage({
               </div>
             </Reveal>
             <p className="mt-4 text-center text-xs text-slate-400">{t.dates.note}</p>
+          </div>
+        </section>
+
+        {/* ===================== Test venue ===================== */}
+        <section id="venue" className="bg-slate-50 py-20 sm:py-24">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6">
+            <Reveal className="overflow-hidden rounded-3xl border border-slate-200 bg-white">
+              <div className="grid gap-0 md:grid-cols-[1fr_1.1fr]">
+                <div className="flex flex-col justify-center p-8 sm:p-10">
+                  <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
+                    {t.venue.heading}
+                  </span>
+                  <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                    {CENTRE.city}
+                  </h2>
+                  <p className="mt-2 text-[15px] font-medium text-slate-700">{t.venue.address}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-slate-600">{t.venue.centreLine}</p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <a
+                      href={CENTRE.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400"
+                    >
+                      <svg className="h-4 w-4 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z" />
+                        <circle cx="12" cy="10" r="2.5" />
+                      </svg>
+                      {t.venue.directions}
+                    </a>
+                    <a
+                      href={CONTACT.phoneHref}
+                      className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700"
+                    >
+                      {CONTACT.phone}
+                    </a>
+                  </div>
+                </div>
+                <div className="relative min-h-[220px] bg-brand-900">
+                  <div className="absolute inset-0 opacity-90" aria-hidden="true"
+                    style={{ backgroundImage: "radial-gradient(circle at 30% 30%, rgba(143,111,219,0.55), transparent 60%), radial-gradient(circle at 75% 70%, rgba(86,45,178,0.6), transparent 55%)" }}
+                  />
+                  <div className="relative flex h-full flex-col items-center justify-center p-8 text-center text-white">
+                    <svg className="h-14 w-14 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z" />
+                      <circle cx="12" cy="10" r="2.7" />
+                    </svg>
+                    <p className="mt-4 text-lg font-bold">Innovative Centre</p>
+                    <p className="text-sm text-brand-100">{CENTRE.addressLine}</p>
+                    <p className="text-sm text-brand-100">{CENTRE.city} · {CENTRE.code}</p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
 

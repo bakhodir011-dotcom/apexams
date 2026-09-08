@@ -1,5 +1,5 @@
 import type { Locale } from "@/i18n/config";
-import type { ApCategory, ApFormat } from "@/lib/apSubjects";
+import type { ApCategory, ApFormat, ExamComponentType } from "@/lib/apSubjects";
 
 export type NavStrings = {
   subjects: string;
@@ -68,10 +68,17 @@ export type Dictionary = {
     body: string;
     button: string;
   };
+  venue: {
+    heading: string;
+    address: string;
+    centreLine: string;
+    directions: string;
+  };
   footer: {
     tagline: string;
     linksHeading: string;
     contactHeading: string;
+    venueHeading: string;
     rights: string;
   };
   subjectPage: {
@@ -87,6 +94,13 @@ export type Dictionary = {
     registerNote: string;
     related: string;
     notScheduled: string;
+    examComponents: string;
+    componentQuestions: string;
+    componentQuestion: string;
+    componentScore: string;
+    componentNote: string;
+    componentsTba: string;
+    componentLabels: Record<ExamComponentType, string>;
   };
 };
 
@@ -164,7 +178,9 @@ const en: Dictionary = {
     heading: "Why sit your AP exams here",
     subheading: "A trusted local centre with the support you need to do your best.",
     items: [
-      { title: "Local test centre", body: "Sit official AP exams in Uzbekistan — save the cost and stress of travelling abroad." },
+      { title: "Free access to AP Classroom", body: "Registered candidates get official College Board resources — instructional videos, progress checks, practice questions and more." },
+      { title: "Support through registration", body: "Our team helps with registration, AP Classroom access, exam-day requirements and key College Board deadlines." },
+      { title: "Local test centre", body: "Sit official AP exams in Samarkand — save the cost and stress of travelling abroad." },
       { title: "27 subjects", body: "From Calculus and Physics to Economics, History and the Arts — a wide catalog to choose from." },
       { title: "Guided registration", body: "Our team walks you through subject choice, deadlines and exam-day logistics." },
       { title: "Experienced staff", body: "Innovative Centre has years of experience running international exams and supporting students." },
@@ -208,10 +224,17 @@ const en: Dictionary = {
     body: "Message our team on Telegram and we'll help you choose subjects and secure your seat.",
     button: "Register via Telegram",
   },
+  venue: {
+    heading: "Test venue",
+    address: "Gagarin street 95A, Samarkand city, Uzbekistan",
+    centreLine: "Innovative Centre (788001) administers AP Exams exclusively in Samarkand and offers 27 AP subjects.",
+    directions: "Open in Google Maps",
+  },
   footer: {
-    tagline: "Take your AP exams at Innovative Centre — Advanced Placement in Uzbekistan.",
+    tagline: "Take your AP exams at Innovative Centre — Advanced Placement in Samarkand, Uzbekistan.",
     linksHeading: "Explore",
     contactHeading: "Contact",
+    venueHeading: "Test venue",
     rights: "All rights reserved.",
   },
   subjectPage: {
@@ -227,6 +250,21 @@ const en: Dictionary = {
     registerNote: "Tap to message our team and register for this exam.",
     related: "Related subjects",
     notScheduled: "See the exam-dates schedule",
+    examComponents: "Exam components",
+    componentQuestions: "questions",
+    componentQuestion: "question",
+    componentScore: "of Score",
+    componentNote: "Structure follows the official College Board format and may be updated — see the College Board page for the latest details.",
+    componentsTba: "Exam structure for this new pilot will be announced by the College Board.",
+    componentLabels: {
+      mcq: "Multiple Choice",
+      saq: "Short Answer",
+      frq: "Free Response",
+      dbq: "Document-Based Question",
+      leq: "Long Essay",
+      create: "Create Performance Task",
+      essays: "Free Response (essays)",
+    },
   },
 };
 
@@ -295,7 +333,9 @@ const ru: Dictionary = {
     heading: "Почему стоит сдавать AP здесь",
     subheading: "Надёжный местный центр и поддержка, чтобы показать лучший результат.",
     items: [
-      { title: "Местный центр", body: "Сдавайте официальные экзамены AP в Узбекистане — без затрат и стресса поездок за границу." },
+      { title: "Бесплатный доступ к AP Classroom", body: "Зарегистрированные кандидаты получают официальные ресурсы College Board — обучающие видео, progress checks, практические вопросы и другое." },
+      { title: "Поддержка при регистрации", body: "Наша команда помогает с регистрацией, доступом к AP Classroom, требованиями к дню экзамена и важными сроками College Board." },
+      { title: "Местный центр", body: "Сдавайте официальные экзамены AP в Самарканде — без затрат и стресса поездок за границу." },
       { title: "27 предметов", body: "От матанализа и физики до экономики, истории и искусства — широкий выбор." },
       { title: "Помощь с регистрацией", body: "Наша команда поможет с выбором предметов, сроками и организацией в день экзамена." },
       { title: "Опытный персонал", body: "У Innovative Centre многолетний опыт проведения международных экзаменов." },
@@ -339,10 +379,17 @@ const ru: Dictionary = {
     body: "Напишите нашей команде в Telegram — поможем выбрать предметы и занять место.",
     button: "Регистрация через Telegram",
   },
+  venue: {
+    heading: "Место проведения",
+    address: "улица Гагарина 95A, город Самарканд, Узбекистан",
+    centreLine: "Innovative Centre (788001) проводит экзамены AP исключительно в Самарканде и предлагает 27 предметов AP.",
+    directions: "Открыть в Google Maps",
+  },
   footer: {
-    tagline: "Сдавайте экзамены AP в Innovative Centre — Advanced Placement в Узбекистане.",
+    tagline: "Сдавайте экзамены AP в Innovative Centre — Advanced Placement в Самарканде, Узбекистан.",
     linksHeading: "Разделы",
     contactHeading: "Контакты",
+    venueHeading: "Место проведения",
     rights: "Все права защищены.",
   },
   subjectPage: {
@@ -358,6 +405,21 @@ const ru: Dictionary = {
     registerNote: "Нажмите, чтобы написать нам и зарегистрироваться на этот экзамен.",
     related: "Похожие предметы",
     notScheduled: "Смотрите расписание экзаменов",
+    examComponents: "Структура экзамена",
+    componentQuestions: "вопросов",
+    componentQuestion: "вопрос",
+    componentScore: "от оценки",
+    componentNote: "Структура соответствует официальному формату College Board и может обновляться — актуальные детали см. на странице College Board.",
+    componentsTba: "Структура этого нового пилотного экзамена будет объявлена College Board.",
+    componentLabels: {
+      mcq: "Тестовые вопросы",
+      saq: "Краткий ответ",
+      frq: "Развёрнутый ответ",
+      dbq: "Задание по документам",
+      leq: "Эссе",
+      create: "Практическое задание Create",
+      essays: "Развёрнутый ответ (эссе)",
+    },
   },
 };
 
@@ -426,7 +488,9 @@ const uz: Dictionary = {
     heading: "Nega AP imtihonlarini shu yerda topshirish kerak",
     subheading: "Ishonchli mahalliy markaz va eng yaxshi natija uchun qo‘llab-quvvatlash.",
     items: [
-      { title: "Mahalliy markaz", body: "Rasmiy AP imtihonlarini O‘zbekistonda topshiring — chet elga borish xarajati va tashvishisiz." },
+      { title: "AP Classroom’ga bepul kirish", body: "Ro‘yxatdan o‘tgan nomzodlar College Board’ning rasmiy resurslarini oladi — o‘quv videolari, progress checks, amaliy savollar va boshqalar." },
+      { title: "Ro‘yxatdan o‘tishda qo‘llab-quvvatlash", body: "Jamoamiz ro‘yxatdan o‘tish, AP Classroom’ga kirish, imtihon kuni talablari va College Board muddatlarida yordam beradi." },
+      { title: "Mahalliy markaz", body: "Rasmiy AP imtihonlarini Samarqandda topshiring — chet elga borish xarajati va tashvishisiz." },
       { title: "27 ta fan", body: "Matematik analiz va fizikadan iqtisodiyot, tarix va san’atgacha — keng tanlov." },
       { title: "Ro‘yxatdan o‘tishda yordam", body: "Jamoamiz fan tanlash, muddatlar va imtihon kuni tashkiliy ishlarida yordam beradi." },
       { title: "Tajribali xodimlar", body: "Innovative Centre’da xalqaro imtihonlarni o‘tkazish bo‘yicha ko‘p yillik tajriba bor." },
@@ -470,10 +534,17 @@ const uz: Dictionary = {
     body: "Jamoamizga Telegram’da yozing — fan tanlash va o‘rin band qilishda yordam beramiz.",
     button: "Telegram orqali ro‘yxatdan o‘tish",
   },
+  venue: {
+    heading: "Imtihon manzili",
+    address: "Gagarin ko‘chasi 95A, Samarqand shahri, O‘zbekiston",
+    centreLine: "Innovative Centre (788001) AP imtihonlarini faqat Samarqandda o‘tkazadi va 27 ta AP fanini taklif etadi.",
+    directions: "Google Maps’da ochish",
+  },
   footer: {
-    tagline: "AP imtihonlaringizni Innovative Centre’da topshiring — O‘zbekistonda Advanced Placement.",
+    tagline: "AP imtihonlaringizni Innovative Centre’da topshiring — Samarqand, O‘zbekistonda Advanced Placement.",
     linksHeading: "Bo‘limlar",
     contactHeading: "Aloqa",
+    venueHeading: "Imtihon manzili",
     rights: "Barcha huquqlar himoyalangan.",
   },
   subjectPage: {
@@ -489,6 +560,21 @@ const uz: Dictionary = {
     registerNote: "Bu imtihonga ro‘yxatdan o‘tish uchun bosing.",
     related: "Tegishli fanlar",
     notScheduled: "Imtihon sanalari jadvalini ko‘ring",
+    examComponents: "Imtihon tuzilishi",
+    componentQuestions: "savol",
+    componentQuestion: "savol",
+    componentScore: "balldan",
+    componentNote: "Tuzilma College Board’ning rasmiy formatiga mos va yangilanishi mumkin — eng so‘nggi ma’lumot uchun College Board sahifasini ko‘ring.",
+    componentsTba: "Ushbu yangi sinov imtihoni tuzilishi College Board tomonidan e’lon qilinadi.",
+    componentLabels: {
+      mcq: "Test savollari",
+      saq: "Qisqa javob",
+      frq: "Yozma javob",
+      dbq: "Hujjatga asoslangan savol",
+      leq: "Insho",
+      create: "Create amaliy topshirig‘i",
+      essays: "Yozma javob (insholar)",
+    },
   },
 };
 

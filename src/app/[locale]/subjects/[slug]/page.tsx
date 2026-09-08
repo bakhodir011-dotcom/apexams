@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { AP_SUBJECTS, getSubject, subjectsByCategory } from "@/lib/apSubjects";
+import { AP_SUBJECTS, getSubject, subjectsByCategory, getExamComponents } from "@/lib/apSubjects";
 import { EXAM_DATES } from "@/lib/examDates";
-import { TELEGRAM_URL } from "@/lib/config";
+import { TELEGRAM_URL, CENTRE } from "@/lib/config";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -53,7 +53,9 @@ export default async function SubjectPage({
   const t = getDictionary(locale);
   const sp = t.subjectPage;
   const exam = findExamDate(subject.name);
+  const components = getExamComponents(subject.slug);
   const related = subjectsByCategory(subject.category).filter((s) => s.slug !== subject.slug);
+  const scoreFmt = (n: number) => (Number.isInteger(n) ? `${n}` : n.toFixed(1));
 
   const facts: { label: string; value: string }[] = [
     { label: sp.categoryLabel, value: t.subjects.categories[subject.category] },
@@ -65,6 +67,7 @@ export default async function SubjectPage({
         ? `${t.dates.weekdays[exam.weekday]}, ${exam.date} (${exam.slot === "morning" ? t.dates.colMorning : t.dates.colAfternoon})`
         : t.subjects.tba,
     },
+    { label: t.venue.heading, value: `${CENTRE.addressLine}, ${CENTRE.city}` },
   ];
 
   return (
@@ -139,6 +142,43 @@ export default async function SubjectPage({
               <p className="mt-3 text-xs leading-relaxed text-slate-500">{sp.registerNote}</p>
             </div>
           </aside>
+        </div>
+
+        {/* Exam components */}
+        <div className="mt-14">
+          <h2 className="text-lg font-bold text-slate-900">{sp.examComponents}</h2>
+          {components.length > 0 ? (
+            <>
+              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200">
+                <ul className="divide-y divide-slate-100">
+                  {components.map((c, i) => (
+                    <li key={i} className="flex items-center justify-between gap-4 bg-white px-5 py-4">
+                      <div>
+                        <p className="text-[15px] font-bold text-slate-900">{sp.componentLabels[c.type]}</p>
+                        <p className="mt-1 text-sm text-slate-500">
+                          {c.questions != null && (
+                            <>
+                              {c.questions} {c.questions === 1 ? sp.componentQuestion : sp.componentQuestions}
+                              <span className="mx-2 text-slate-300">|</span>
+                            </>
+                          )}
+                          {scoreFmt(c.score)}% {sp.componentScore}
+                        </p>
+                      </div>
+                      <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-700">
+                        {scoreFmt(c.score)}%
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <p className="mt-3 text-xs text-slate-400">{sp.componentNote}</p>
+            </>
+          ) : (
+            <p className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-800">
+              {sp.componentsTba}
+            </p>
+          )}
         </div>
 
         {/* Related */}

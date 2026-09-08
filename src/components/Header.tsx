@@ -25,7 +25,7 @@ export default function Header({ locale, t }: { locale: Locale; t: Dictionary })
           <CheckMark className="h-8 w-8 flex-shrink-0 text-ic-800" />
           <span className="leading-tight">
             <span className="block text-[15px] font-extrabold tracking-tight text-ic-800">Innovative Centre</span>
-            <span className="block text-[10.5px] font-semibold tracking-wide text-ic-500">AP EXAM CENTRE · UZBEKISTAN</span>
+            <span className="block text-[10.5px] font-semibold tracking-wide text-ic-500">AP CENTRE 788001 · SAMARKAND</span>
           </span>
         </a>
 

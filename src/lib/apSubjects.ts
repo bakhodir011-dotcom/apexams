@@ -402,6 +402,137 @@ export const AP_SUBJECTS: ApSubject[] = [
   },
 ];
 
+// ---- Exam components (section structure) per subject ----
+// Component types map to translated labels in the dictionary.
+export type ExamComponentType =
+  | "mcq" // Multiple Choice
+  | "saq" // Short Answer
+  | "frq" // Free Response
+  | "dbq" // Document-Based Question
+  | "leq" // Long Essay
+  | "create" // Create Performance Task
+  | "essays"; // Free-response essays (English)
+
+export type ExamComponent = {
+  type: ExamComponentType;
+  questions: number | null; // null = no fixed question count (e.g. performance task)
+  score: number; // percent of total score
+};
+
+// Standard College Board exam structures. Percentages of total score.
+export const EXAM_COMPONENTS: Record<string, ExamComponent[]> = {
+  "calculus-ab": [
+    { type: "mcq", questions: 45, score: 50 },
+    { type: "frq", questions: 6, score: 50 },
+  ],
+  "calculus-bc": [
+    { type: "mcq", questions: 45, score: 50 },
+    { type: "frq", questions: 6, score: 50 },
+  ],
+  precalculus: [
+    { type: "mcq", questions: 40, score: 62.5 },
+    { type: "frq", questions: 4, score: 37.5 },
+  ],
+  statistics: [
+    { type: "mcq", questions: 40, score: 50 },
+    { type: "frq", questions: 6, score: 50 },
+  ],
+  "computer-science-a": [
+    { type: "mcq", questions: 40, score: 50 },
+    { type: "frq", questions: 4, score: 50 },
+  ],
+  "computer-science-principles": [
+    { type: "mcq", questions: 70, score: 70 },
+    { type: "create", questions: null, score: 30 },
+  ],
+  cybersecurity: [],
+  biology: [
+    { type: "mcq", questions: 60, score: 50 },
+    { type: "frq", questions: 6, score: 50 },
+  ],
+  chemistry: [
+    { type: "mcq", questions: 60, score: 50 },
+    { type: "frq", questions: 7, score: 50 },
+  ],
+  "environmental-science": [
+    { type: "mcq", questions: 80, score: 60 },
+    { type: "frq", questions: 3, score: 40 },
+  ],
+  "physics-1": [
+    { type: "mcq", questions: 50, score: 50 },
+    { type: "frq", questions: 5, score: 50 },
+  ],
+  "physics-2": [
+    { type: "mcq", questions: 50, score: 50 },
+    { type: "frq", questions: 4, score: 50 },
+  ],
+  "physics-c-mechanics": [
+    { type: "mcq", questions: 35, score: 50 },
+    { type: "frq", questions: 3, score: 50 },
+  ],
+  "physics-c-electricity-and-magnetism": [
+    { type: "mcq", questions: 35, score: 50 },
+    { type: "frq", questions: 3, score: 50 },
+  ],
+  "english-language-and-composition": [
+    { type: "mcq", questions: 45, score: 45 },
+    { type: "essays", questions: 3, score: 55 },
+  ],
+  "english-literature-and-composition": [
+    { type: "mcq", questions: 55, score: 45 },
+    { type: "essays", questions: 3, score: 55 },
+  ],
+  microeconomics: [
+    { type: "mcq", questions: 60, score: 66.7 },
+    { type: "frq", questions: 3, score: 33.3 },
+  ],
+  macroeconomics: [
+    { type: "mcq", questions: 60, score: 66.7 },
+    { type: "frq", questions: 3, score: 33.3 },
+  ],
+  psychology: [
+    { type: "mcq", questions: 75, score: 66.7 },
+    { type: "frq", questions: 2, score: 33.3 },
+  ],
+  "united-states-history": [
+    { type: "mcq", questions: 55, score: 40 },
+    { type: "saq", questions: 3, score: 20 },
+    { type: "dbq", questions: 1, score: 25 },
+    { type: "leq", questions: 1, score: 15 },
+  ],
+  "world-history-modern": [
+    { type: "mcq", questions: 55, score: 40 },
+    { type: "saq", questions: 3, score: 20 },
+    { type: "dbq", questions: 1, score: 25 },
+    { type: "leq", questions: 1, score: 15 },
+  ],
+  "united-states-government-and-politics": [
+    { type: "mcq", questions: 55, score: 50 },
+    { type: "frq", questions: 4, score: 50 },
+  ],
+  "comparative-government-and-politics": [
+    { type: "mcq", questions: 55, score: 50 },
+    { type: "frq", questions: 4, score: 50 },
+  ],
+  "human-geography": [
+    { type: "mcq", questions: 60, score: 50 },
+    { type: "frq", questions: 3, score: 50 },
+  ],
+  "art-history": [
+    { type: "mcq", questions: 80, score: 50 },
+    { type: "frq", questions: 6, score: 50 },
+  ],
+  "music-theory": [
+    { type: "mcq", questions: 75, score: 45 },
+    { type: "frq", questions: 9, score: 55 },
+  ],
+  "business-personal-finance": [],
+};
+
+export function getExamComponents(slug: string): ExamComponent[] {
+  return EXAM_COMPONENTS[slug] ?? [];
+}
+
 export function getSubject(slug: string): ApSubject | undefined {
   return AP_SUBJECTS.find((s) => s.slug === slug);
 }

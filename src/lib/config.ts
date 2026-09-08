@@ -8,3 +8,12 @@ export const CONTACT = {
   email: "ap@innovativecentre.org",
   emailHref: "mailto:ap@innovativecentre.org",
 } as const;
+
+// AP exam centre identity + test venue.
+export const CENTRE = {
+  code: "788001",
+  city: "Samarkand",
+  addressLine: "Gagarin street 95A",
+  fullAddress: "Gagarin street 95A, Samarkand city, Uzbekistan",
+  mapsUrl: "https://maps.google.com/?q=Gagarin+street+95A+Samarkand",
+} as const;
