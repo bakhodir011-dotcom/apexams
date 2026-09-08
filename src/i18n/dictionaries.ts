@@ -114,6 +114,12 @@ export type Dictionary = {
     componentNote: string;
     componentsTba: string;
     componentLabels: Record<ExamComponentType, string>;
+    whyTake: string;
+    recommendedFor: string;
+    recommendedForNone: string;
+    prepHeading: string;
+    prepBody: string;
+    atAGlance: string;
   };
 };
 
@@ -302,6 +308,12 @@ const en: Dictionary = {
       create: "Create Performance Task",
       essays: "Free Response (essays)",
     },
+    whyTake: "Why take this exam",
+    recommendedFor: "Recommended for these majors",
+    recommendedForNone: "A useful elective for a broad range of majors.",
+    prepHeading: "How you'll prepare",
+    prepBody: "Registered candidates get free access to AP Classroom — official College Board instructional videos, progress checks and practice questions — plus our team's support through registration and exam day.",
+    atAGlance: "At a glance",
   },
 };
 
@@ -481,6 +493,12 @@ const ru: Dictionary = {
       create: "Практическое задание Create",
       essays: "Развёрнутый ответ (эссе)",
     },
+    whyTake: "Зачем сдавать этот экзамен",
+    recommendedFor: "Рекомендуется для этих специальностей",
+    recommendedForNone: "Полезный факультатив для широкого круга специальностей.",
+    prepHeading: "Как вы будете готовиться",
+    prepBody: "Зарегистрированные кандидаты получают бесплатный доступ к AP Classroom — официальные обучающие видео College Board, progress checks и практические вопросы — а также поддержку нашей команды при регистрации и в день экзамена.",
+    atAGlance: "Кратко о главном",
   },
 };
 
@@ -660,6 +678,12 @@ const uz: Dictionary = {
       create: "Create amaliy topshirig‘i",
       essays: "Yozma javob (insholar)",
     },
+    whyTake: "Nega bu imtihonni topshirish kerak",
+    recommendedFor: "Ushbu mutaxassisliklar uchun tavsiya etiladi",
+    recommendedForNone: "Ko‘plab mutaxassisliklar uchun foydali tanlov fani.",
+    prepHeading: "Qanday tayyorlanasiz",
+    prepBody: "Ro‘yxatdan o‘tgan nomzodlar AP Classroom’ga bepul kirish oladi — College Board’ning rasmiy o‘quv videolari, progress checks va amaliy savollari — hamda ro‘yxatdan o‘tish va imtihon kunida jamoamiz yordami.",
+    atAGlance: "Qisqacha",
   },
 };
 

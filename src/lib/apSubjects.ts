@@ -621,6 +621,10 @@ export const MAJORS: { id: MajorId; subjectSlugs: string[] }[] = [
   },
 ];
 
+export function getMajorsForSubject(slug: string): MajorId[] {
+  return MAJORS.filter((m) => m.subjectSlugs.includes(slug)).map((m) => m.id);
+}
+
 export function getMajorSubjects(id: MajorId): ApSubject[] {
   const major = MAJORS.find((m) => m.id === id);
   if (!major) return [];

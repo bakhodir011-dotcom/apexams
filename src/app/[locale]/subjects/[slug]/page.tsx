@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { AP_SUBJECTS, getSubject, subjectsByCategory, getExamComponents } from "@/lib/apSubjects";
+import { AP_SUBJECTS, getSubject, subjectsByCategory, getExamComponents, getMajorsForSubject } from "@/lib/apSubjects";
 import { EXAM_DATES } from "@/lib/examDates";
 import { TELEGRAM_URL, CENTRE } from "@/lib/config";
 import Header from "@/components/Header";
@@ -54,6 +54,7 @@ export default async function SubjectPage({
   const sp = t.subjectPage;
   const exam = findExamDate(subject.name);
   const components = getExamComponents(subject.slug);
+  const majorIds = getMajorsForSubject(subject.slug);
   const related = subjectsByCategory(subject.category).filter((s) => s.slug !== subject.slug);
   const scoreFmt = (n: number) => (Number.isInteger(n) ? `${n}` : n.toFixed(1));
 
@@ -106,13 +107,62 @@ export default async function SubjectPage({
               href={subject.collegeBoardUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition hover:text-brand-700"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition hover:text-brand-700"
             >
               {sp.official}
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5h5v5M19 5l-9 9M12 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-5" />
               </svg>
             </a>
+
+            {/* Why take this exam */}
+            <div className="mt-10">
+              <h2 className="text-lg font-bold text-slate-900">{sp.whyTake}</h2>
+              <ul className="mt-4 space-y-3">
+                {t.about.points.map((pt) => (
+                  <li key={pt.title} className="flex gap-3">
+                    <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z" />
+                    </svg>
+                    <span className="text-[15px] leading-relaxed text-slate-600">
+                      <span className="font-semibold text-slate-800">{pt.title}.</span> {pt.body}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Recommended for majors */}
+            <div className="mt-10">
+              <h2 className="text-lg font-bold text-slate-900">{sp.recommendedFor}</h2>
+              {majorIds.length > 0 ? (
+                <div className="mt-4 flex flex-wrap gap-2.5">
+                  {majorIds.map((id) => (
+                    <a
+                      key={id}
+                      href={`/${locale}#majors`}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-sm font-medium text-slate-700 transition hover:border-brand-300 hover:text-brand-700"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
+                      {t.majors.labels[id]}
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-3 text-[15px] text-slate-600">{sp.recommendedForNone}</p>
+              )}
+            </div>
+
+            {/* Preparation */}
+            <div className="mt-10 rounded-2xl border border-brand-100 bg-brand-50/60 p-6">
+              <div className="flex items-center gap-2.5">
+                <svg className="h-5 w-5 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 5h16v11H4zM9 9l4 2.5L9 14V9zM8 20h8" />
+                </svg>
+                <h2 className="text-base font-bold text-slate-900">{sp.prepHeading}</h2>
+              </div>
+              <p className="mt-3 text-[15px] leading-relaxed text-slate-600">{sp.prepBody}</p>
+            </div>
           </div>
 
           {/* Key facts + CTA */}
