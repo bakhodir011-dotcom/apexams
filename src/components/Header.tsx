@@ -11,8 +11,8 @@ export default function Header({ locale, t }: { locale: Locale; t: Dictionary })
   const [langOpen, setLangOpen] = useState(false);
 
   const nav = [
-    { href: `/${locale}#subjects`, label: t.nav.subjects },
     { href: `/${locale}#about`, label: t.nav.about },
+    { href: `/${locale}#subjects`, label: t.nav.subjects },
     { href: `/${locale}#dates`, label: t.nav.dates },
     { href: `/${locale}#faq`, label: t.nav.faq },
     { href: `/${locale}#contact`, label: t.nav.contact },

@@ -5,8 +5,8 @@ import { CheckMark } from "@/components/Logo";
 
 export default function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
   const links = [
-    { href: `/${locale}#subjects`, label: t.nav.subjects },
     { href: `/${locale}#about`, label: t.nav.about },
+    { href: `/${locale}#subjects`, label: t.nav.subjects },
     { href: `/${locale}#dates`, label: t.nav.dates },
     { href: `/${locale}#faq`, label: t.nav.faq },
   ];

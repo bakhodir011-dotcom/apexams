@@ -172,9 +172,9 @@ const en: Dictionary = {
     ],
   },
   subjects: {
-    heading: "Choose your subject",
+    heading: "AP subjects offered at Innovative Centre",
     subheading:
-      "Select any subject to see its overview, exam format and official College Board information.",
+      "All 27 AP subjects you can register for and sit in Samarkand — grouped by area. Select any subject for its overview, exam format, delivery mode, structure and 2027 date.",
     categories: {
       "math-cs": "Mathematics & Computer Science",
       sciences: "Sciences",
@@ -366,9 +366,9 @@ const ru: Dictionary = {
     ],
   },
   subjects: {
-    heading: "Выберите предмет",
+    heading: "Предметы AP в Innovative Centre",
     subheading:
-      "Выберите любой предмет, чтобы увидеть обзор, формат экзамена и официальную информацию College Board.",
+      "Все 27 предметов AP, на которые можно зарегистрироваться и сдать в Самарканде — по направлениям. Выберите предмет, чтобы увидеть обзор, формат, способ проведения, структуру и дату экзамена 2027.",
     categories: {
       "math-cs": "Математика и информатика",
       sciences: "Естественные науки",
@@ -560,9 +560,9 @@ const uz: Dictionary = {
     ],
   },
   subjects: {
-    heading: "Fanni tanlang",
+    heading: "Innovative Centre’dagi AP fanlari",
     subheading:
-      "Umumiy ma’lumot, imtihon formati va College Board’ning rasmiy ma’lumotini ko‘rish uchun istalgan fanni tanlang.",
+      "Samarqandda ro‘yxatdan o‘tib topshirishingiz mumkin bo‘lgan 27 ta AP fani — yo‘nalishlar bo‘yicha. Umumiy ma’lumot, format, o‘tkazish usuli, tuzilma va 2027 sanasini ko‘rish uchun fan tanlang.",
     categories: {
       "math-cs": "Matematika va informatika",
       sciences: "Tabiiy fanlar",
