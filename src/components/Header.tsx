@@ -22,9 +22,9 @@ export default function Header({ locale, t }: { locale: Locale; t: Dictionary })
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a href={`/${locale}`} className="flex items-center gap-2.5">
-          <CheckMark className="h-8 w-8 flex-shrink-0 text-ic-800" />
+          <CheckMark className="h-9 w-9 flex-shrink-0 text-ic-800" />
           <span className="leading-tight">
-            <span className="block text-[15px] font-extrabold tracking-tight text-ic-800">Innovative Centre</span>
+            <span className="font-brand block text-[17px] font-bold tracking-tight text-ic-800">Innovative Centre</span>
             <span className="block text-[10.5px] font-semibold tracking-wide text-ic-500">AP CENTRE 788001 · SAMARKAND</span>
           </span>
         </a>

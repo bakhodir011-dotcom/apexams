@@ -18,9 +18,9 @@ export default function Footer({ locale, t }: { locale: Locale; t: Dictionary })
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5">
-              <CheckMark className="h-8 w-8 flex-shrink-0 text-white" />
+              <CheckMark className="h-9 w-9 flex-shrink-0 text-white" />
               <span className="leading-tight">
-                <span className="block text-[15px] font-extrabold tracking-tight text-white">Innovative Centre</span>
+                <span className="font-brand block text-[17px] font-bold tracking-tight text-white">Innovative Centre</span>
                 <span className="block text-[10.5px] font-semibold tracking-wide text-brand-300">AP CENTRE 788001 · SAMARKAND</span>
               </span>
             </div>

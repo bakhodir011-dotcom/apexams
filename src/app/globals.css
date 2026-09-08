@@ -1,6 +1,10 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap");
 
 @theme {
+  /* Brand wordmark typeface (matches the Innovative Centre logo) */
+  --font-brand: "Quicksand", ui-rounded, "Segoe UI", system-ui, sans-serif;
+
   /* Innovative Centre brand — deep indigo / royal purple (matches the logo) */
   --color-brand-50: #f4f2fc;
   --color-brand-100: #e9e4f9;

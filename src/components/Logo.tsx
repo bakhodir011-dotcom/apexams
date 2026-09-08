@@ -1,12 +1,13 @@
-// Innovative Centre wordmark — brush check + name, rebuilt as inline SVG.
-// Swap for the official raster at /public/logos if you prefer the exact file.
+// Innovative Centre logo — smooth bold check + wordmark, rebuilt as inline SVG
+// so it renders crisply at any size and adapts to light/dark via currentColor.
+// The wordmark uses Quicksand (the brand typeface). To use the exact raster
+// instead on a light background, drop it in /public/logos and swap the mark.
 
 export function CheckMark({ className = "h-8 w-8" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      {/* Brush-style check swoosh */}
+    <svg className={className} viewBox="0 0 48 48" fill="none" aria-hidden="true">
       <path
-        d="M4 22 C4 22 9 25 13 33 C13.6 34.3 15.4 34.4 16 33 C21 21.5 30 9 37 4.5 C38.5 3.5 37 6 35 8.5 C29 16 21.5 25 16.5 33.5 C15.8 34.7 14 34.6 13.4 33.2 C11 27.5 7.5 24 4.5 23 C3.4 22.6 3.4 22 4 22 Z"
+        d="M6 27 C9.5 25.8 12.8 27.6 15.4 31.4 L18.2 35.6 C19 36.8 20.7 36.7 21.4 35.4 C26.4 25.7 33.8 15.6 43 8.4 C44 7.6 43.2 9.4 41.8 11.2 C34.2 20.8 27.4 30.4 22.6 39.4 C21.6 41.2 19.2 41.2 18.1 39.4 C15.4 34.9 11.6 31 7.6 29.4 C5.9 28.7 5.2 27.3 6 27 Z"
         fill="currentColor"
       />
     </svg>
@@ -28,13 +29,13 @@ export default function Logo({
 
   return (
     <span className={`flex items-center gap-2.5 ${className}`}>
-      <CheckMark className={`h-8 w-8 flex-shrink-0 ${markColor}`} />
+      <CheckMark className={`h-9 w-9 flex-shrink-0 ${markColor}`} />
       <span className="leading-tight">
-        <span className={`block text-[17px] font-extrabold tracking-tight ${nameColor}`}>
+        <span className={`font-brand block text-[19px] font-bold tracking-tight ${nameColor}`}>
           Innovative Centre
         </span>
         {showTagline && (
-          <span className={`block text-[11px] font-medium ${tagColor}`}>
+          <span className={`font-brand block text-[11px] font-semibold ${tagColor}`}>
             Enabling world-class education
           </span>
         )}
