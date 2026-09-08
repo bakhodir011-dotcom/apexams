@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  /* Innovative Centre brand — deep indigo / royal purple (matches the logo) */
+  --color-brand-50: #f4f2fc;
+  --color-brand-100: #e9e4f9;
+  --color-brand-200: #d3c8f3;
+  --color-brand-300: #b3a0e9;
+  --color-brand-400: #8f6fdb;
+  --color-brand-500: #6f45cc;
+  --color-brand-600: #562db2;
+  --color-brand-700: #46248f;
+  --color-brand-800: #3a2076;
+  --color-brand-900: #2f1a60; /* the logo purple */
+  --color-brand-950: #1d0f40;
+
+  /* Cambridge English teal — used only by the Authorised-Exam-Centre badge */
+  --color-accent-400: #4ecdc4;
+  --color-accent-500: #2bb3aa;
+  --color-accent-600: #1d938c;
+
+  /* Innovative Centre purple aliases for the logo/wordmark */
+  --color-ic-200: #cabff0;
+  --color-ic-500: #6f45cc;
+  --color-ic-700: #3a2076;
+  --color-ic-800: #2f1a60;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===================== Animations ===================== */
+
+/* Scroll-reveal: hidden until .is-visible is added by IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero entrance cascade (above the fold — plays on load) */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-rise {
+  opacity: 0;
+  animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+/* Slowly drifting hero background blobs */
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -24px) scale(1.08); }
+}
+.blob-drift {
+  animation: blob-drift 14s ease-in-out infinite;
+}
+.blob-drift-slow {
+  animation: blob-drift 20s ease-in-out infinite;
+}
+
+/* Primary-CTA arrow slide on hover */
+.cta-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.group\/cta:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .hero-rise {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .blob-drift,
+  .blob-drift-slow,
+  .cta-arrow {
+    animation: none !important;
+    transition: none !important;
+  }
+}
