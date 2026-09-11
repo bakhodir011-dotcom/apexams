@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { locales } from "@/i18n/config";
 import { AP_SUBJECTS } from "@/lib/apSubjects";
 
+export const dynamic = "force-static";
+
 const BASE = "https://ap.innovativecentre.org";
 
 export default function sitemap(): MetadataRoute.Sitemap {
