@@ -720,5 +720,5 @@ const uz: Dictionary = {
 export const dictionaries: Record<Locale, Dictionary> = { uz, ru, en };
 
 export function getDictionary(locale: Locale): Dictionary {
-  return dictionaries[locale] ?? dictionaries.uz;
+  return dictionaries[locale] ?? dictionaries.en;
 }
