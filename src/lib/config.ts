@@ -2,6 +2,10 @@
 
 export const TELEGRAM_URL = "https://t.me/Apforuzbekistan";
 
+// GoatCounter analytics site code — the subdomain you register at goatcounter.com
+// (i.e. https://<code>.goatcounter.com). Leave empty to disable analytics.
+export const GOATCOUNTER_CODE = "innovativecentre-ap";
+
 export const CONTACT = {
   phone: "+998 55 701 01 06",
   phoneHref: "tel:+998557010106",

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/i18n/config";
+import { GOATCOUNTER_CODE } from "@/lib/config";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -19,7 +20,17 @@ export default async function LocaleLayout({
 
   return (
     <html lang={langMap[locale as Locale]}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        {children}
+        {GOATCOUNTER_CODE && (
+          // GoatCounter privacy-friendly analytics (no cookies). Counts page views.
+          <script
+            data-goatcounter={`https://${GOATCOUNTER_CODE}.goatcounter.com/count`}
+            async
+            src="https://gc.zgo.at/count.js"
+          />
+        )}
+      </body>
     </html>
   );
 }
